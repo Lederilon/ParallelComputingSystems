@@ -34,16 +34,15 @@ namespace ArithmeticExpressionParser
 			try
 			{
 				var top = parser.Parse();
-				testAllocation(top);
-
+				//testAllocation(top);
 				top.Optimize(top);
-				testAllocation(top);
+				//testAllocation(top);
 
 				top.ExtractBraces();
 				testAllocation(top);
-				
-				top.Optimize(top);
-				testAllocation(top);
+
+				//top.Optimize(top);
+				//testAllocation(top);
 			}
 			catch(Exception e)
 			{

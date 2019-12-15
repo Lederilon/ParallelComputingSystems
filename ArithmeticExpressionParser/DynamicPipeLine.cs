@@ -105,6 +105,7 @@ namespace ArithmeticExpressionParser
 
 				while (node.EarlyStart > tastStart)
 				{
+					tastStart = lastTackt;
 					if (!_taktDuration.TryGetValue(tastStart, out long taktDuration))
 					{
 						tastStart = node.EarlyStart;
@@ -143,7 +144,7 @@ namespace ArithmeticExpressionParser
 			{
 				for (var j = 0; j < duration; j++)
 				{
-					_taktDuration[currentTackt] = ceiledDuration;
+					_taktDuration[currentTackt] = duration;
 					layersAllocation[i, currentTackt] = new Allocation()
 					{
 						Node = node
@@ -164,7 +165,7 @@ namespace ArithmeticExpressionParser
 
 			var finish = currentTackt - unused;
 			node.Allocate(tastStart, finish);
-			lastTackt = tastStart + duration;
+			lastTackt = tastStart + ceiledDuration;
 			mem[finish] = "W";
 		}
 
